@@ -1,0 +1,49 @@
+:root {
+    --dark: 36, 36, 35;
+    --darkgrey: 51, 53, 51;
+    --accentuate: 245, 203, 92;
+    --lightgrey: 232, 237, 223;
+    --grey: 207, 219, 213;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+}
+
+.stylize i {
+    letter-spacing: 4px;
+}
+
+html {
+    background-color: rgb(var(--darkgrey));
+}
+
+hr {
+    margin: 20px 0px;
+    border-top: 1px solid rgb(--var(--dark));
+}
+
+#content-container {
+    transition: transform .2s ease-in-out, filter .2s ease-in-out;
+}
+
+#content-container.go-right {
+    transform: translate(100%);
+    filter: blur(4px);
+}
+
+#content-container.go-left {
+    transform: translate(-100%);
+    filter: blur(10px);
+}
+
+.no-animation{ 
+    animation-timing-function: step-end; 
+}

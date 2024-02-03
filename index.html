@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Dan Simonin</title>
+        <meta name="description" content="Dan's Website">
+        <meta name="keywords" content="dan simonin portfolio website">
+
+        <!-- Font Awesome Icons -->
+        <script src="https://kit.fontawesome.com/7c0c3bd42c.js" crossorigin="anonymous"></script>
+
+        <!-- Google Fonts-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> 
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="styles/base.css">
+        <link rel="stylesheet" href="styles/header.css">
+        <link rel="stylesheet" href="styles/footer.css">
+    </head>
+    <body>
+        <div id="header">
+            <span id="menu">
+                <span id="home" class="menu-item active">
+                    <div><i class="fa-solid fa-house fa-2xl" onclick="updatePages('home')"></i></div>
+                    <span class="dot"></span>
+                </span>
+                <span id="cv" class="menu-item">
+                    <div><i class="fa-solid fa-dna fa-2xl" onclick="updatePages('cv')"></i></div>
+                    <span class="dot"></span>
+                </span>
+                <span id="projects" class="menu-item">
+                    <div><i class="fa-solid fa-code fa-2xl" onclick="updatePages('projects')"></i></div>
+                    <span class="dot"></span>
+                </span>
+                <span id="contact" class="menu-item">
+                    <div><i class="fa-solid fa-address-book fa-2xl" onclick="updatePages('contact')"></i></div>
+                    <span class="dot"></span>
+                </span>
+            </span>
+            <hr>
+        </div>
+        <div id="content-container">
+
+        </div>
+        <div id="footer">
+            developed by Dan Simonin in 2024
+        </div>
+    </body>
+
+    <!-- Scripts -->
+    <script src="scripts/scroll.js"></script>
+    <script src="scripts/pages.js"></script>
+</html>
