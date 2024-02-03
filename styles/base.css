@@ -2,18 +2,18 @@
     --dark: 36, 36, 35;
     --darkgrey: 51, 53, 51;
     --accentuate: 245, 203, 92;
-    --lightgrey: 232, 237, 223;
+    --lightgrey: 251, 251, 251;
     --grey: 207, 219, 213;
 }
 
 html, body {
     padding: 0;
     margin: 0;
-    font-family: 'Ubuntu Mono', monospace;
+    font-family: 'lmroman';
+    letter-spacing: 1px;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'JetBrains Mono', monospace;
     text-transform: uppercase;
 }
 
@@ -22,7 +22,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 html {
-    background-color: rgb(var(--darkgrey));
+    /* Gradient background */
+    background-image: linear-gradient(to top right, rgba(var(--darkgrey),.1) 0%, rgb(var(--lightgrey)) 100%);
 }
 
 hr {

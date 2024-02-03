@@ -33,15 +33,18 @@ function loadCSSFile(filePath) {
         })
         .then(cssContent => {
             // Inject the HTML content into the container
-            var styleSheet = document.createElement("style")
-            styleSheet.innerText = cssContent
-            document.head.appendChild(styleSheet)
+            var styleSheet = document.createElement("style");
+            styleSheet.innerText = cssContent;
+            document.head.appendChild(styleSheet);
         })
         .catch(
             error => console.error('Error fetching CSS:', error)
         );
 }
 
+/*
+ * Load Page content
+ */
 function updatePages(page_name) {
     if (current_page == page_name || sliding) return;
 
@@ -55,70 +58,46 @@ function updatePages(page_name) {
     document.getElementById(page_name).classList.add("active");
 
     /* Update content */
-
     loadCSSFile("styles/".concat(page_name, ".css"));
 
     (async () => {
         if (current_page != "none") {
-            current_page = page_name
-            content_container.classList.add("go-left")
-            content_container.classList.add("blur")
-            sliding = true
+            current_page = page_name;
+            content_container.classList.add("go-left");
+            content_container.classList.add("blur");
+            sliding = true;
         } else {
-            current_page = page_name
+            current_page = page_name;
             await loadHTMLFile("pages/".concat(page_name, ".html"));
-            switch(page_name) {
-                case "home":
-                    home()
-                    break;
-            }
+            page_event();
         }
       })();
 }
 
 function finish_transition() {
-    console.log(sliding)
     if (sliding) {
         loadHTMLFile("pages/".concat(current_page, ".html")).then(function() {
-            content_container.classList.add("no-animation")
-            content_container.classList.remove("go-left")
-            content_container.classList.add("go-right")
-            content_container.classList.remove("no-animation")
-            content_container.classList.remove("go-right")
-            sliding = false
-            switch(current_page) {
-                case "home":
-                    home()
-                    break;
-            }
+            content_container.classList.add("no-animation");
+            content_container.classList.remove("go-left");
+            content_container.classList.add("go-right");
+            content_container.classList.remove("no-animation");
+            content_container.classList.remove("go-right");
+            sliding = false;
+            page_event();
         })
     } else {
-        content_container.classList.remove("blur")
+        content_container.classList.remove("blur");
     }
 }
 
-function home() {
-    var stylizeElements = document.querySelectorAll('.stylize')
+function page_event() {
+    switch(current_page) {
+        case "home":
+            loadcv();
+            break;
+    }
+}
 
-    stylizeElements.forEach(function (element) {
-        var indexes = [5, 7, 9]
+function loadcv() {
 
-        var zero = ["0", "o"]
-        var one = ["1", "i"]
-
-        setInterval(function () {
-            var start_array = element.innerHTML.split(''); // Convert the string to an array
-
-            var char_idx = indexes[Math.floor(Math.random() * indexes.length)];
-            var new_char_idx = Math.floor(Math.random() * zero.length);
-
-            if (zero.includes(start_array[char_idx])) {
-                start_array[char_idx] = zero[new_char_idx]
-            } else {
-                start_array[char_idx] = one[new_char_idx]
-            }
-
-            element.innerHTML = start_array.join(''); // Convert the array back to a string
-        }, 50);
-      });
 }
