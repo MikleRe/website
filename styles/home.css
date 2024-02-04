@@ -38,17 +38,6 @@ body {
     color: rgba(0,0,0,.5);
 }
 
-/*
-#me .card-border {
-    position: relative;
-    top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
-    height: 70%;
-    width: 50%;
-    border-radius: 20px;
-}
-*/
-
 #me .card {
     position: relative;
     top: 50%; left: 50%;

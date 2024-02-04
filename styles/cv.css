@@ -1,0 +1,9 @@
+body {
+    /* Take the size of the screen (100vh * number of home-item) */
+    height: 100vh;
+}
+
+#cv-container {
+    margin-top: 7%;
+    text-align:center;
+}

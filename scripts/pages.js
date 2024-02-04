@@ -1,10 +1,19 @@
 var content_container = ""
+var content_container_next = ""
+
 var current_page = "none"
 var sliding = false
 
+var direction = 1;
+
+var pages = ["home", "cv", "projects", "contact"]
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
 window.onload = function () {
-    content_container = document.getElementById("content-container");
-    content_container.addEventListener("transitionend", finish_transition)
+    content_container = document.querySelector(".content-container:not(.next)");
+    content_container.addEventListener("transitionend", finish_transition);
+    content_container_next = document.querySelector(".content-container.next");
     updatePages("home");
 };
 
@@ -17,7 +26,7 @@ async function loadHTMLFile(filePath) {
         }
     
         const htmlContent = await response.text();
-        document.getElementById('content-container').innerHTML = htmlContent;
+        content_container.innerHTML = htmlContent;
       } catch (error) {
         console.error('Error fetching HTML:', error);
     }
@@ -46,6 +55,7 @@ function loadCSSFile(filePath) {
  * Load Page content
  */
 function updatePages(page_name) {
+    // If we want to travel to the same page or we are already travelling
     if (current_page == page_name || sliding) return;
 
     /* Update menu */
@@ -57,14 +67,17 @@ function updatePages(page_name) {
 
     document.getElementById(page_name).classList.add("active");
 
+    // Compute sliding direction
+    direction = Math.sign(pages.indexOf(current_page) - pages.indexOf(page_name));
+    content_container_next.style.transform = "translateX(" + -direction*100 + "%)";
+
     /* Update content */
     loadCSSFile("styles/".concat(page_name, ".css"));
 
     (async () => {
         if (current_page != "none") {
             current_page = page_name;
-            content_container.classList.add("go-left");
-            content_container.classList.add("blur");
+            content_container.style.transform = "translateX(" + direction*100 + "%)";
             sliding = true;
         } else {
             current_page = page_name;
@@ -76,17 +89,25 @@ function updatePages(page_name) {
 
 function finish_transition() {
     if (sliding) {
+        // Switch the content_container actual and next
+        var tmp = content_container;
+        content_container = content_container_next;
+        content_container_next = tmp;
+
+        content_container_next.removeEventListener("transitionend", finish_transition);
+        content_container.addEventListener("transitionend", finish_transition);
+
+        content_container.classList.remove("next");
+        content_container_next.classList.add("next");
+
+        content_container_next.innerHTML = "";
+
         loadHTMLFile("pages/".concat(current_page, ".html")).then(function() {
-            content_container.classList.add("no-animation");
-            content_container.classList.remove("go-left");
-            content_container.classList.add("go-right");
-            content_container.classList.remove("no-animation");
-            content_container.classList.remove("go-right");
+            // Finish animation
+            content_container.style.transform = "";
             sliding = false;
             page_event();
         })
-    } else {
-        content_container.classList.remove("blur");
     }
 }
 
