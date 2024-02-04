@@ -69,7 +69,12 @@ function updatePages(page_name) {
 
     // Compute sliding direction
     direction = Math.sign(pages.indexOf(current_page) - pages.indexOf(page_name));
+
+    console.log(direction);
+
     content_container_next.style.transform = "translateX(" + -direction*100 + "%)";
+
+    // TODO: FIX home -> projects -> cv -> home
 
     /* Update content */
     loadCSSFile("styles/".concat(page_name, ".css"));

@@ -1,9 +1,6 @@
 :root {
-    --dark: 36, 36, 35;
-    --darkgrey: 51, 53, 51;
-    --accentuate: 245, 203, 92;
-    --lightgrey: 251, 251, 251;
-    --grey: 207, 219, 213;
+    --background: 251, 251, 251;
+    --foreground: 36, 36, 35;
 }
 
 html, body {
@@ -15,6 +12,7 @@ html, body {
 
 h1, h2, h3, h4, h5, h6 {
     text-transform: uppercase;
+    color: rgb(var(--foreground));
 }
 
 .stylize i {
@@ -23,12 +21,12 @@ h1, h2, h3, h4, h5, h6 {
 
 html {
     /* Gradient background */
-    background-image: linear-gradient(to top right, rgba(var(--darkgrey),.1) 0%, rgb(var(--lightgrey)) 100%);
+    background-image: linear-gradient(to top right, rgba(var(--foreground), .1) 0%, rgb(var(--background)) 100%);
 }
 
 hr {
     margin: 20px 0px;
-    border-top: 1px solid rgb(--var(--dark));
+    border-top: 1px solid rgb(var(--foreground));
 }
 
 .content-container {

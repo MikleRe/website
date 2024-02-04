@@ -7,7 +7,7 @@
     margin-left:auto;
     margin-right:auto;
     padding-top: 30px;
-    color: rgb(var(--lightgrey));
+    color: rgba(var(--foreground), .5);
 
     background-image: linear-gradient(rgba(5,5,5,.1), rgba(0, 0, 0, 0)); 
 }
@@ -26,8 +26,22 @@
     text-align: center;
 }
 
+#theme {
+    float: right;
+    height:0px;
+}
+
+#theme div {
+    height:0px;
+    margin-right: 20px;
+}
+
+#theme-icon:hover {
+    cursor: pointer;
+}
+
 .menu-item {
-    color: black;
+    color: rgb(var(--foreground));
     display: table-cell;
     padding: 0px 20px;
 }
@@ -46,7 +60,7 @@
     display: inline-block;
     height: 5px;
     width: 5px;
-    background-color: rgba(var(--darkgrey), .5);
+    background-color: rgb(var(--foreground), .5);
     border-radius: 50%;
     opacity: 0;
 }
