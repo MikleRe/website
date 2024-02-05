@@ -14,6 +14,7 @@ window.onload = function () {
     content_container = document.querySelector(".content-container:not(.next)");
     content_container.addEventListener("transitionend", finish_transition);
     content_container_next = document.querySelector(".content-container.next");
+
     updatePages("home");
 };
 
@@ -69,22 +70,20 @@ function updatePages(page_name) {
 
     // Compute sliding direction
     direction = Math.sign(pages.indexOf(current_page) - pages.indexOf(page_name));
-
-    console.log(direction);
-
+    // Put next div into the right position TODO: FIX
     content_container_next.style.transform = "translateX(" + -direction*100 + "%)";
 
-    // TODO: FIX home -> projects -> cv -> home
-
-    /* Update content */
+    /* Update Style */
     loadCSSFile("styles/".concat(page_name, ".css"));
 
     (async () => {
         if (current_page != "none") {
+            // Switching from page to another
             current_page = page_name;
             content_container.style.transform = "translateX(" + direction*100 + "%)";
             sliding = true;
         } else {
+            // Loading first page
             current_page = page_name;
             await loadHTMLFile("pages/".concat(page_name, ".html"));
             page_event();
@@ -92,9 +91,12 @@ function updatePages(page_name) {
       })();
 }
 
+/*
+ * Triggered by the finished transition of actual grid once it is out of sight
+ */ 
 function finish_transition() {
     if (sliding) {
-        // Switch the content_container actual and next
+        // Switch the content_container with the next one
         var tmp = content_container;
         content_container = content_container_next;
         content_container_next = tmp;
@@ -108,6 +110,9 @@ function finish_transition() {
         content_container_next.innerHTML = "";
 
         loadHTMLFile("pages/".concat(current_page, ".html")).then(function() {
+            var header_px = document.getElementById('header').offsetHeight + "px";
+            content_container.style.paddingTop = header_px;
+            content_container_next.style.paddingTop = "0px";
             // Finish animation
             content_container.style.transform = "";
             sliding = false;
@@ -119,11 +124,11 @@ function finish_transition() {
 function page_event() {
     switch(current_page) {
         case "home":
-            loadcv();
+            home();
             break;
     }
 }
 
-function loadcv() {
+function home() {
 
 }

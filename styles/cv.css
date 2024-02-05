@@ -1,9 +1,13 @@
 body {
     /* Take the size of the screen (100vh * number of home-item) */
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
 }
 
 #cv-container {
-    padding-top: 5%;
     text-align:center;
+}
+
+img {
+    height: 80vh;
 }

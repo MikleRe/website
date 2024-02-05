@@ -42,12 +42,12 @@ body {
     top: 50%; left: 50%;
     transform: translate(-50%,-50%);
     height: 70%;
-    width: 20%;
     border-radius: 20px;
     position: absolute;
     padding: 20px;
     border: 1px solid rgb(var(--foreground));
     color : rgb(var(--foreground));
+    text-align: justify;
 }
 
 #me-photo {

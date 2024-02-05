@@ -34,6 +34,6 @@ hr {
 }
 
 .content-container.next {
-    transform: translateX(-100%);
+    transform: translateX(100%);
     /* filter: blur(10px); */
 }
