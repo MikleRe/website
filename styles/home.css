@@ -51,9 +51,15 @@ body {
 }
 
 #me-photo {
-    font-size: 200px;
+    height: 250px;
     text-align: center;
-    margin: 20px;
+    margin-bottom: 50px;
+}
+
+#me-photo img {
+    margin: auto;
+    border-radius: 50%;
+    height: 250px;
 }
 
 .fade-in-section {
