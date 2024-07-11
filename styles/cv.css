@@ -11,3 +11,12 @@ body {
 img {
     height: 80vh;
 }
+
+#cv-container div {
+    color: black;
+    margin-bottom: 10px;
+}
+
+#cv-container a:visited {
+    color: black;
+}
